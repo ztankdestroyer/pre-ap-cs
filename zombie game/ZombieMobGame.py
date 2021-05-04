@@ -71,14 +71,27 @@ player_health = 100
 while True:
     timer.tick(30)
     ticks = pygame.time.get_ticks()
-
     game_time = time.perf_counter()
+    if (int(game_time) % 10) == 0:
+        counter_1 += 1
+        if (counter_1 % 10) == 0:
+            print("spawn")
+            zombie_image = pygame.image.load("zombie walk.png").convert_alpha()
+            zombie = MySprite()
+            zombie.load("zombie walk.png", 96, 96, 8)
+            zombie.position = random.randint(0,700), random.randint(0,500)
+            zombie.direction = random.randint(0,3) * 2
+            zombie_group.add(zombie)
+
     
 
     for event in pygame.event.get():
         if event.type == QUIT: sys.exit()
     keys = pygame.key.get_pressed()
     if keys[K_ESCAPE]: sys.exit()
+    elif keys[K_UP] and keys[K_RIGHT]:
+        player.direction = 1
+        player_moving = True
     elif keys[K_UP] or keys[K_w]:
         player.direction = 0
         player_moving = True
