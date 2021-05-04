@@ -62,7 +62,7 @@ health.load("health.png", 32, 32, 1)
 health.position = 400,300
 health_group.add(health)
 
-game_over = False
+game_over = True
 player_moving = False
 player_health = 100
 
